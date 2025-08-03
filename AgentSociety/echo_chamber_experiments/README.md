@@ -11,6 +11,14 @@ A comprehensive framework for studying belief propagation, polarization, and ech
 - **Intervention Testing**: Fact-checking, diverse exposure, and bridge-building interventions
 - **Rich Analysis**: Comprehensive metrics, visualizations, and statistical analysis
 
+### Belief Distribution System (NEW!)
+- **Continuous Parameters**: Fine-grained control over belief distributions instead of discrete categories
+- **Adjustable Polarization**: Polarization strength from 0.0 (uniform) to 1.0 (maximally polarized)
+- **Asymmetric Bias**: Left/right bias control (-1.0 to +1.0)
+- **Multi-Modal Populations**: Support for complex realistic distributions with multiple belief clusters
+- **Personality Correlations**: Link belief strength with personality traits (confidence, openness, etc.)
+- **Backward Compatible**: Drop-in replacement for existing experiments
+
 ### Topics Available
 - Gun Control
 - Climate Change
@@ -90,6 +98,29 @@ python run_experiment.py create-config --name "my_study" --agents 75
 python run_experiment.py run --config-file configs/climate_debate_config.json
 ```
 
+#### 4. Continuous Belief Distributions (NEW!)
+```python
+from core.continuous_integration import create_highly_polarized_population, create_tri_modal_population
+from core.agent import TopicType
+
+# Adjustable polarization with bias control
+agents = create_highly_polarized_population(
+    num_agents=100,
+    topic=TopicType.CLIMATE_CHANGE,
+    polarization_strength=0.75,  # 0.0-1.0 continuous control
+    asymmetry=0.2                # Right-leaning bias
+)
+
+# Realistic multi-modal population
+agents = create_tri_modal_population(
+    num_agents=200,
+    topic=TopicType.HEALTHCARE,
+    left_weight=0.3,    # 30% left-leaning
+    center_weight=0.4,  # 40% moderate  
+    right_weight=0.3    # 30% right-leaning
+)
+```
+
 ## 📊 Understanding Results
 
 ### Key Metrics
@@ -166,6 +197,42 @@ results = experiment.run_full_experiment()
 # Analyze results
 print(f"Final polarization: {results.polarization_over_time[-1]}")
 print(f"Echo chambers: {len(results.final_echo_chambers)}")
+```
+
+### Continuous Belief Distribution Programming Interface (NEW!)
+
+```python
+from core.continuous_integration import ContinuousAgentConfig, create_continuous_agent_population
+from core.continuous_beliefs import BeliefDistributionParams, DistributionType
+
+# Full custom configuration with continuous parameters
+belief_params = BeliefDistributionParams(
+    distribution_type=DistributionType.BIMODAL,
+    polarization_strength=0.8,      # 0.0-1.0 continuous
+    polarization_asymmetry=0.3,     # -1.0 to +1.0 bias
+    gap_size=0.6,                   # Gap between belief clusters
+    personality_correlations={
+        'openness': -0.4,           # Strong beliefs → less open
+        'confidence': 0.5,          # Strong beliefs → more confident
+    }
+)
+
+config = ContinuousAgentConfig(
+    num_agents=150,
+    topic=TopicType.IMMIGRATION,
+    belief_params=belief_params,
+    random_seed=42
+)
+
+agents = create_continuous_agent_population(config)
+
+# Parameter space exploration
+import numpy as np
+for pol_strength in np.linspace(0.1, 0.9, 5):
+    # Test different polarization levels
+    params = create_polarized_params(polarization_strength=pol_strength)
+    agents = create_custom_population(100, TopicType.GUN_CONTROL, params)
+    # ... analyze outcomes ...
 ```
 
 ### Custom Analysis
@@ -306,6 +373,44 @@ for intervention in fact_check diverse_exposure bridge_building; do
         --output "intervention_study/type_$intervention/" \
         --seed 123
 done
+```
+
+## 📚 Continuous Belief Distribution System
+
+The new continuous belief system provides unprecedented flexibility in modeling agent populations. For comprehensive documentation, see:
+
+### Quick Reference
+
+- **📖 [CONTINUOUS_BELIEFS_GUIDE.md](CONTINUOUS_BELIEFS_GUIDE.md)** - Complete usage guide and examples
+- **🧪 Test the system**: `python test_continuous_beliefs.py`
+- **🎨 See demonstrations**: `python examples/continuous_beliefs_demo.py`
+
+### Key Benefits Over Discrete System
+
+| Feature | Before (Discrete) | After (Continuous) |
+|---------|-------------------|-------------------|
+| **Parameter Control** | 3 fixed options | Infinite continuous combinations |
+| **Polarization** | Fixed strength | 0.0-1.0 adjustable |
+| **Population Bias** | None | -1.0 to +1.0 asymmetry |
+| **Multi-Modal** | Impossible | Support for any number of clusters |
+| **Correlations** | None | Belief-personality correlations |
+| **Optimization** | Manual tuning | Algorithmic parameter search |
+
+### Migration from Discrete System
+
+```python
+# OLD (Discrete):
+agents = create_diverse_agent_population(100, TopicType.GUN_CONTROL, "polarized")
+
+# NEW (Drop-in replacement):
+agents = create_continuous_population_from_legacy(100, TopicType.GUN_CONTROL, "polarized")
+
+# NEW (With customization):
+agents = create_highly_polarized_population(
+    100, TopicType.GUN_CONTROL, 
+    polarization_strength=0.8, 
+    asymmetry=0.2
+)
 ```
 
 ## 🤝 Contributing
