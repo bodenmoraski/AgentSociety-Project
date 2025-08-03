@@ -1,0 +1,37 @@
+{
+  "name": "Election Cycle Belief Dynamics",
+  "description": "Analysis of belief evolution during election campaigns with polarization peaks",
+  "experiment_type": "dynamic_evolution",
+  
+  "num_agents": 100,
+  "topic": "taxation",
+  "num_rounds": 20,
+  "interactions_per_round": 300,
+  
+  "crisis_scenario": "election",
+  "crisis_severity": 0.9,
+  
+  "belief_history_tracking": true,
+  "sample_interval": 1,
+  "phase_detection_threshold": 0.15,
+  
+  "optimize_intervention_timing": false,
+  "intervention_type": "diverse_exposure",
+  "intervention_round": 10,
+  
+  "network_config": {
+    "network_type": "preferential_attachment",
+    "homophily_strength": 0.8,
+    "average_connections": 8,
+    "dynamic_rewiring": true,
+    "bridge_probability": 0.03
+  },
+  
+  "derivative_epsilon": 0.1,
+  "trajectory_smoothing": 0.02,
+  
+  "save_detailed_history": true,
+  "save_network_snapshots": false,
+  "output_directory": "results/dynamic_election",
+  "random_seed": 123
+}

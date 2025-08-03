@@ -1,0 +1,37 @@
+{
+  "name": "Economic Crisis Belief Evolution",
+  "description": "Study belief dynamics during economic shocks with recovery patterns",
+  "experiment_type": "dynamic_evolution",
+  
+  "num_agents": 150,
+  "topic": "taxation",
+  "num_rounds": 30,
+  "interactions_per_round": 450,
+  
+  "crisis_scenario": "economic_shock",
+  "crisis_severity": 0.7,
+  
+  "belief_history_tracking": true,
+  "sample_interval": 1,
+  "phase_detection_threshold": 0.1,
+  
+  "optimize_intervention_timing": true,
+  "intervention_type": "bridge_building",
+  "intervention_candidates": [3, 6, 10, 15, 20],
+  
+  "network_config": {
+    "network_type": "scale_free",
+    "homophily_strength": 0.6,
+    "average_connections": 7,
+    "dynamic_rewiring": true,
+    "bridge_probability": 0.04
+  },
+  
+  "derivative_epsilon": 0.08,
+  "trajectory_smoothing": 0.1,
+  
+  "save_detailed_history": true,
+  "save_network_snapshots": true,
+  "output_directory": "results/dynamic_economic",
+  "random_seed": 456
+}

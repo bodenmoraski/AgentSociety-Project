@@ -1,0 +1,21 @@
+{
+  "name": "Climate Change Debate Study",
+  "description": "Studying polarization around climate change policies with fact-checking intervention",
+  "num_agents": 80,
+  "topic": "climate_change",
+  "belief_distribution": "polarized",
+  "network_config": {
+    "network_type": "small_world",
+    "homophily_strength": 0.8,
+    "average_connections": 6,
+    "dynamic_rewiring": true,
+    "bridge_probability": 0.03
+  },
+  "num_rounds": 25,
+  "interactions_per_round": 300,
+  "intervention_round": 15,
+  "intervention_type": "fact_check",
+  "save_detailed_history": true,
+  "save_network_snapshots": true,
+  "random_seed": 42
+}

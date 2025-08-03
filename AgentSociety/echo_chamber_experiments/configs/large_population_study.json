@@ -1,0 +1,21 @@
+{
+  "name": "Large Population Dynamics",
+  "description": "Large-scale simulation of echo chamber formation with diverse exposure intervention",
+  "num_agents": 200,
+  "topic": "healthcare",
+  "belief_distribution": "normal",
+  "network_config": {
+    "network_type": "scale_free",
+    "homophily_strength": 0.6,
+    "average_connections": 8,
+    "dynamic_rewiring": true,
+    "bridge_probability": 0.05
+  },
+  "num_rounds": 30,
+  "interactions_per_round": 600,
+  "intervention_round": 20,
+  "intervention_type": "diverse_exposure",
+  "save_detailed_history": false,
+  "save_network_snapshots": true,
+  "random_seed": null
+}
